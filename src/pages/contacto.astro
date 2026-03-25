@@ -1,0 +1,65 @@
+---
+import MainLayout from '../components/MainLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Button from '../components/Button.astro';
+import { site } from '../data/site';
+import { contact } from '../data/contact';
+import { zones } from '../data/zones';
+import { breadcrumbSchema } from '../lib/seo';
+---
+<MainLayout {...site.seo.contact} schema={[breadcrumbSchema('Contacto', '/contacto')]}>
+  <section class="bg-sand py-16">
+    <div class="container-shell grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">Contacto</p>
+        <h1 class="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">Hablemos — Estoy aquí para ayudarte</h1>
+        <p class="mt-6 text-lg leading-8 text-slate-600">Podés escribirme por WhatsApp, llamarme o dejar tu consulta en el formulario. Trabajo con compradores, propietarios e inversores en Asunción y alrededores.</p>
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          <a href={contact.whatsappUrl} target="_blank" rel="noopener noreferrer" class="card p-6">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">WhatsApp</p>
+            <p class="mt-3 text-slate-700">Atención rápida para primeras consultas y seguimiento.</p>
+          </a>
+          <a href={contact.phoneUrl} class="card p-6">
+            <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">Llamada</p>
+            <p class="mt-3 text-slate-700">Ideal si preferís hablar directo sobre tu caso.</p>
+          </a>
+        </div>
+      </div>
+      <form action={contact.formAction} method="POST" class="card grid gap-4 p-8">
+        <input name="nombre" required placeholder="Nombre y apellido" class="rounded-2xl border border-slate-200 px-4 py-3" />
+        <input name="email" type="email" required placeholder="Correo electrónico" class="rounded-2xl border border-slate-200 px-4 py-3" />
+        <input name="telefono" required placeholder="WhatsApp o teléfono" class="rounded-2xl border border-slate-200 px-4 py-3" />
+        <select name="objetivo" class="rounded-2xl border border-slate-200 px-4 py-3">
+          <option>Comprar</option>
+          <option>Vender</option>
+          <option>Alquilar</option>
+          <option>Invertir</option>
+        </select>
+        <textarea name="mensaje" rows="5" placeholder="Contame barrio, tipo de propiedad y presupuesto o contexto de venta" class="rounded-2xl border border-slate-200 px-4 py-3"></textarea>
+        <button type="submit" class="rounded-full bg-brand-500 px-5 py-3 text-sm font-semibold text-white">Enviar consulta</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container-shell grid gap-12 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <SectionHeading eyebrow="Cobertura" title="Zonas que atiendo con más frecuencia" description="Áreas con demanda activa, buena conectividad y oportunidades para distintos perfiles." />
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          {zones.map((zone) => (
+            <div class="card p-5">
+              <h3 class="font-semibold text-slate-900">{zone.name}</h3>
+              <p class="mt-2 text-sm text-slate-600">{zone.description}</p>
+            </div>
+          ))}
+        </div>
+        <div class="mt-8">
+          <Button href="/propiedades" variant="secondary">Ver propiedades disponibles</Button>
+        </div>
+      </div>
+      <div class="card overflow-hidden">
+        <iframe src={contact.mapEmbedUrl} title="Mapa de servicio en Asunción" loading="lazy" class="h-full min-h-[420px] w-full border-0"></iframe>
+      </div>
+    </div>
+  </section>
+</MainLayout>

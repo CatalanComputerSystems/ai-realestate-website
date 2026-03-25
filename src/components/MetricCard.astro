@@ -1,0 +1,7 @@
+---
+const { value, label } = Astro.props as { value: string; label: string };
+---
+<div class="card p-6 text-center">
+  <p class="text-3xl font-bold text-brand-600">{value}</p>
+  <p class="mt-2 text-sm text-slate-600">{label}</p>
+</div>

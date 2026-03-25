@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#5146e5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1440" height="900" fill="url(#g)"/>
+  <circle cx="1090" cy="220" r="170" fill="#ffffff22"/>
+  <circle cx="1210" cy="160" r="60" fill="#ffffff16"/>
+  <path d="M190 560 440 350l210 170 210-150 380 290H190Z" fill="#fff" fill-opacity=".96"/>
+  <path d="M260 560 540 280l160 120 180-110 280 270H260Z" fill="#e0e7ff" fill-opacity=".92"/>
+  <text x="100" y="145" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="#fff">Asesoría inmobiliaria en Asunción</text>
+  <text x="100" y="205" font-family="Arial, sans-serif" font-size="30" fill="#e2e8f0">Compra, venta y alquiler con foco en barrios de alta demanda.</text>
+</svg>

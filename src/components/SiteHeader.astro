@@ -1,0 +1,18 @@
+---
+import { site } from '../data/site';
+import Button from './Button.astro';
+---
+<header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
+  <div class="container-shell flex items-center justify-between py-4">
+    <a href="/" class="text-lg font-bold text-slate-900">{site.agentName}<span class="text-brand-500">.</span></a>
+    <nav class="hidden items-center gap-6 md:flex">
+      {site.nav.slice(1).map((link) => (
+        <a href={link.href} class="text-sm font-medium text-slate-600 transition hover:text-slate-900">{link.label}</a>
+      ))}
+    </nav>
+    <div class="hidden md:block">
+      <Button href="/contacto">Contactar</Button>
+    </div>
+    <a href="/contacto" class="rounded-full bg-brand-500 px-4 py-2 text-sm font-semibold text-white md:hidden">CTA</a>
+  </div>
+</header>

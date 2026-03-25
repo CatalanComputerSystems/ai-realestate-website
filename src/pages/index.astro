@@ -1,0 +1,114 @@
+---
+import MainLayout from '../components/MainLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Button from '../components/Button.astro';
+import PropertyCard from '../components/PropertyCard.astro';
+import TestimonialCard from '../components/TestimonialCard.astro';
+import MetricCard from '../components/MetricCard.astro';
+import ZoneBadgeList from '../components/ZoneBadgeList.astro';
+import { site } from '../data/site';
+import { agent } from '../data/agent';
+import { listings } from '../data/listings';
+import { testimonials } from '../data/testimonials';
+import { zones } from '../data/zones';
+import { websiteSchema } from '../lib/seo';
+import { contact } from '../data/contact';
+---
+<MainLayout {...site.seo.home} schema={[websiteSchema()]}>
+  <section class="bg-sand">
+    <div class="container-shell grid gap-12 py-16 md:grid-cols-[1.15fr_0.85fr] md:py-24">
+      <div class="flex flex-col justify-center">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">Agente inmobiliaria en Asunción</p>
+        <h1 class="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-6xl">Tu agente inmobiliario de confianza en Asunción</h1>
+        <p class="mt-6 max-w-2xl text-lg leading-8 text-slate-600">{site.tagline}</p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <Button href="/propiedades">Ver propiedades</Button>
+          <Button href={contact.whatsappUrl} target="_blank" rel="noopener noreferrer" variant="ghost">Escribirme por WhatsApp</Button>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-3 text-sm text-slate-600">
+          <span class="rounded-full bg-white px-4 py-2">Villa Morra</span>
+          <span class="rounded-full bg-white px-4 py-2">Carmelitas</span>
+          <span class="rounded-full bg-white px-4 py-2">Recoleta</span>
+        </div>
+      </div>
+      <div class="card overflow-hidden">
+        <img src="/images/hero-realestate.svg" alt="Lucía Benítez agente inmobiliaria en Asunción" width="1440" height="900" loading="eager" fetchpriority="high" class="h-full w-full object-cover" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container-shell grid gap-5 md:grid-cols-3">
+      {site.metrics.map((metric) => <MetricCard value={metric.value} label={metric.label} />)}
+    </div>
+  </section>
+
+  <section class="section-pad bg-slate-50">
+    <div class="container-shell">
+      <SectionHeading eyebrow="Destacadas" title="Propiedades en venta y alquiler en Asunción" description="Una selección pensada para compradores, familias e inversores que buscan ubicaciones con alta demanda y buen potencial." />
+      <div class="mt-10 grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
+        {listings.map((listing) => <PropertyCard listing={listing} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container-shell grid gap-10 lg:grid-cols-[1fr_1fr]">
+      <div>
+        <SectionHeading eyebrow="Confianza local" title="Acompañamiento claro para comprar, vender o alquilar" description="Trabajo con procesos simples, comunicación ágil y foco en oportunidades reales para tu perfil." />
+        <div class="prose-copy mt-6 space-y-4">
+          <p>{agent.bio}</p>
+          <p>{agent.longBio}</p>
+        </div>
+        <div class="mt-8">
+          <Button href="/sobre-mi" variant="secondary">Conocé más sobre mí</Button>
+        </div>
+      </div>
+      <div class="card p-8">
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">Barrios que trabajo</p>
+        <div class="mt-6">
+          <ZoneBadgeList items={agent.neighborhoods} />
+        </div>
+        <div class="mt-8 space-y-4">
+          {zones.slice(0, 3).map((zone) => (
+            <div class="rounded-2xl bg-slate-50 p-4">
+              <h3 class="font-semibold text-slate-900">{zone.name}</h3>
+              <p class="mt-1 text-sm text-slate-600">{zone.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-slate-950 text-white">
+    <div class="container-shell">
+      <SectionHeading eyebrow="Testimonios" title="Clientes que avanzaron con más seguridad" description="Consultas mejor filtradas, decisiones más claras y acompañamiento real en cada etapa." />
+      <div class="mt-10 grid gap-6 lg:grid-cols-3">
+        {testimonials.map((testimonial) => <TestimonialCard testimonial={testimonial} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-brand-700 text-white">
+    <div class="container-shell grid gap-10 lg:grid-cols-[1fr_0.9fr]">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-100">Contacto rápido</p>
+        <h2 class="mt-4 text-3xl font-bold sm:text-4xl">Contame qué propiedad buscás o qué querés vender</h2>
+        <p class="mt-4 max-w-xl text-brand-100">Respondemos por WhatsApp, llamada o formulario. Ideal para primeras consultas, valuación inicial y búsqueda guiada.</p>
+      </div>
+      <form action={contact.formAction} method="POST" class="card grid gap-4 p-6 text-slate-900">
+        <input name="nombre" required placeholder="Tu nombre" class="rounded-2xl border border-slate-200 px-4 py-3" />
+        <input name="telefono" required placeholder="Tu WhatsApp o teléfono" class="rounded-2xl border border-slate-200 px-4 py-3" />
+        <select name="interes" class="rounded-2xl border border-slate-200 px-4 py-3">
+          <option>Quiero comprar</option>
+          <option>Quiero vender</option>
+          <option>Quiero alquilar</option>
+          <option>Busco asesoría de inversión</option>
+        </select>
+        <textarea name="mensaje" rows="4" placeholder="Contame zona, tipo de propiedad y presupuesto aproximado" class="rounded-2xl border border-slate-200 px-4 py-3"></textarea>
+        <button type="submit" class="rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white">Enviar consulta</button>
+      </form>
+    </div>
+  </section>
+</MainLayout>

@@ -1,0 +1,58 @@
+---
+import MainLayout from '../components/MainLayout.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import PropertyCard from '../components/PropertyCard.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Button from '../components/Button.astro';
+import { site } from '../data/site';
+import { listings } from '../data/listings';
+import { services } from '../data/services';
+import { contact } from '../data/contact';
+import { breadcrumbSchema, serviceSchema } from '../lib/seo';
+---
+<MainLayout {...site.seo.properties} schema={[serviceSchema(), breadcrumbSchema('Propiedades', '/propiedades')]}>
+  <section class="bg-sand py-16">
+    <div class="container-shell">
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">Compra, venta y alquiler</p>
+      <h1 class="mt-4 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">Propiedades en Venta y Alquiler en Asunción</h1>
+      <p class="mt-6 max-w-3xl text-lg text-slate-600">Explorá oportunidades en Villa Morra, Carmelitas, Recoleta, Las Mercedes y otras zonas con alta demanda. Si todavía no definiste una propiedad, también podés empezar por un servicio de asesoría.</p>
+      <div class="mt-6 flex flex-wrap gap-3 text-sm text-slate-600">
+        <span class="rounded-full bg-white px-4 py-2">Venta</span>
+        <span class="rounded-full bg-white px-4 py-2">Alquiler</span>
+        <span class="rounded-full bg-white px-4 py-2">Inversión</span>
+        <span class="rounded-full bg-white px-4 py-2">Asunción</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad">
+    <div class="container-shell">
+      <SectionHeading eyebrow="Selección curada" title="Opciones destacadas para vivir o invertir" description="La arquitectura del sitio permite combinar inventario curado y servicios, ideal para mantener una experiencia útil incluso cuando el stock cambia." />
+      <div class="mt-10 grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
+        {listings.map((listing) => <PropertyCard listing={listing} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-slate-50">
+    <div class="container-shell">
+      <SectionHeading eyebrow="Servicios" title="También te acompaño si estás en una etapa temprana" description="Si aún no elegiste una propiedad o querés salir al mercado con una estrategia más sólida, empezá por acá." />
+      <div class="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        {services.map((service) => <ServiceCard service={service} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-brand-700 text-white">
+    <div class="container-shell flex flex-col items-start justify-between gap-6 lg:flex-row lg:items-center">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-100">Consulta directa</p>
+        <h2 class="mt-3 text-3xl font-bold">¿Querés recibir opciones filtradas por barrio, presupuesto y objetivo?</h2>
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <Button href={contact.whatsappUrl} target="_blank" rel="noopener noreferrer" variant="secondary">Consultar por WhatsApp</Button>
+        <Button href="/sobre-mi" variant="ghost">Conocé al agente</Button>
+      </div>
+    </div>
+  </section>
+</MainLayout>

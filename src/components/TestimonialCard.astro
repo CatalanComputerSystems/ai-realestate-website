@@ -1,0 +1,11 @@
+---
+import type { Testimonial } from '../types/content';
+const { testimonial } = Astro.props as { testimonial: Testimonial };
+---
+<article class="card p-6">
+  <p class="text-lg leading-8 text-slate-700">“{testimonial.quote}”</p>
+  <div class="mt-6">
+    <p class="font-semibold text-slate-900">{testimonial.name}</p>
+    <p class="text-sm text-slate-500">{testimonial.location}</p>
+  </div>
+</article>

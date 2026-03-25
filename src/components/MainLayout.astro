@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import FloatingWhatsAppButton from './FloatingWhatsAppButton.astro';
+import StickyMobileContactBar from './StickyMobileContactBar.astro';
+import { site } from '../data/site';
+import { absoluteUrl, globalSchema } from '../lib/seo';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  schema?: Record<string, unknown>[];
+}
+
+const { title, description, path, schema = [] } = Astro.props;
+const canonicalUrl = absoluteUrl(path);
+const ogImage = absoluteUrl('/og/og-image.svg');
+const allSchema = [globalSchema(), ...schema];
+const gaId = import.meta.env.PUBLIC_GA4_MEASUREMENT_ID;
+---
+<!doctype html>
+<html lang="es-PY">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="es-PY" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_PY" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" as="image" href="/images/hero-realestate.svg" />
+    {allSchema.map((entry) => <script type="application/ld+json" set:html={JSON.stringify(entry)} />)}
+    {gaId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+        <script is:inline>{`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${gaId}');`}</script>
+      </>
+    )}
+  </head>
+  <body>
+    <SiteHeader />
+    <main>
+      <slot />
+    </main>
+    <SiteFooter />
+    <FloatingWhatsAppButton />
+    <StickyMobileContactBar />
+  </body>
+</html>

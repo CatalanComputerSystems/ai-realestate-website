@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="54" y="54" width="1092" height="522" rx="28" fill="#1e293b"/>
+  <text x="90" y="220" font-family="Arial, sans-serif" font-size="64" font-weight="700" fill="#ffffff">Lucía Benítez</text>
+  <text x="90" y="300" font-family="Arial, sans-serif" font-size="34" fill="#cbd5e1">Agente inmobiliaria en Asunción, Paraguay</text>
+  <text x="90" y="360" font-family="Arial, sans-serif" font-size="28" fill="#94a3b8">Compra · Venta · Alquiler · Inversión</text>
+  <rect x="90" y="420" width="360" height="64" rx="32" fill="#5146e5"/>
+  <text x="126" y="462" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff">luciabenitez.com</text>
+</svg>

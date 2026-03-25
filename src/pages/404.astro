@@ -1,0 +1,17 @@
+---
+import MainLayout from '../components/MainLayout.astro';
+import Button from '../components/Button.astro';
+---
+<MainLayout title="Página no encontrada" description="La página que buscás no existe." path="/404">
+  <section class="section-pad">
+    <div class="container-shell text-center">
+      <p class="text-sm font-semibold uppercase tracking-[0.2em] text-brand-500">404</p>
+      <h1 class="mt-4 text-4xl font-bold text-slate-900">Página no encontrada</h1>
+      <p class="mx-auto mt-4 max-w-xl text-lg text-slate-600">La URL que intentaste abrir no existe o fue movida. Volvé al inicio o explorá las propiedades disponibles.</p>
+      <div class="mt-8 flex justify-center gap-4">
+        <Button href="/">Ir al inicio</Button>
+        <Button href="/propiedades" variant="ghost">Ver propiedades</Button>
+      </div>
+    </div>
+  </section>
+</MainLayout>

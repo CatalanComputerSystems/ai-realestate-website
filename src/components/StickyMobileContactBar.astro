@@ -1,0 +1,9 @@
+---
+import { contact } from '../data/contact';
+---
+<div class="fixed inset-x-0 bottom-0 z-40 border-t border-slate-200 bg-white/95 p-3 backdrop-blur md:hidden">
+  <div class="mx-auto grid max-w-md grid-cols-2 gap-3">
+    <a href={contact.phoneUrl} class="rounded-full bg-slate-900 px-4 py-3 text-center text-sm font-semibold text-white">Llamar</a>
+    <a href={contact.whatsappUrl} target="_blank" rel="noopener noreferrer" class="rounded-full bg-emerald-500 px-4 py-3 text-center text-sm font-semibold text-white">WhatsApp</a>
+  </div>
+</div>
